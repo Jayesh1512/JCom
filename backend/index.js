@@ -15,6 +15,10 @@ app.listen(8000, (err) => {
     }
 });
 
+app.get("/", (req, res) => {
+    res.json("Hello");
+})
+
 app.post('/compile', async(req, res) => {
     if(req.body.lang === 'java'){
         const output = await java(req.body);

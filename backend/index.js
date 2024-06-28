@@ -1,15 +1,17 @@
 import express from 'express';
 import cors from 'cors';
 import { java } from './compiler.js';
+
 const app = express();
 
-app.use(cors({
-        origin: ["https://compilerpro.vercel.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }));
-app.use(express.json());
+const corsOptions = {
+    origin: "https://compilerpro.vercel.app",
+    methods: ["POST", "GET"],
+    credentials: true
+};
 
+app.use(cors(corsOptions));
+app.use(express.json());
 
 app.listen(8000, (err) => {
     if (!err) {
@@ -23,15 +25,15 @@ app.get("/", (req, res) => {
     res.json("Hello");
 })
 
-app.post('/compile', async(req, res) => {
+app.post('/compile', cors(corsOptions), async(req, res) => {
     if(req.body.lang === 'java'){
         const output = await java(req.body);
         console.log(output);
-        res.status(200).send(output)
+        res.status(200).send(output);
     }
     // else if(req.body.lang === 'cpp'){
     //     cpp(req.body);
-    // }else if(req.body.lang === 'python'){
+    // } else if(req.body.lang === 'python'){
     //     python(req.body);
     // }
 });

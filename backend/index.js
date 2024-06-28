@@ -23,17 +23,24 @@ app.listen(8000, (err) => {
 
 app.get("/", (req, res) => {
     res.json("Hello");
-})
+});
 
-app.post('/compile', cors(corsOptions), async(req, res) => {
-    if(req.body.lang === 'java'){
-        const output = await java(req.body);
-        console.log(output);
-        res.status(200).send(output);
-    }
-    // else if(req.body.lang === 'cpp'){
+app.post('/compile', async (req, res) => {
+    if (req.body.lang === 'java') {
+        try {
+            const output = await java(req.body);
+            console.log(output);
+            res.status(200).send(output);
+        } catch (error) {
+            console.error("Error running code:", error);
+            res.status(500).send("Error running code");
+        }
+    } 
+    // else if (req.body.lang === 'cpp') {
     //     cpp(req.body);
-    // } else if(req.body.lang === 'python'){
+    // } else if (req.body.lang === 'python') {
     //     python(req.body);
     // }
 });
+
+app.options('/compile', cors(corsOptions)); // Enable pre-flight request for /compile

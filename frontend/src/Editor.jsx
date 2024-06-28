@@ -5,6 +5,7 @@ import axios from "axios";
 const IDEditor = (props) => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  axios.defaults.withCredentials = true;
 
   let defaultCode;
   if(props.language == 'java'){

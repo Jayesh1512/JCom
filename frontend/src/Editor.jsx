@@ -19,7 +19,7 @@ const IDEditor = (props) => {
 
   const handleRunCode = async () => {
     try {
-      const response = await axios.post("http://localhost:8000/compile", {
+      const response = await axios.post("https://compilerpro-api.vercel.app/compile", {
         code,
         input,
         lang: props.language || "java",

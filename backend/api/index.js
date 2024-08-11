@@ -23,10 +23,8 @@ app.post('/api/compile', async(req, res) => {
 
 });
 
-
-app.get('/yo' , (req,res)=>{
+app.get('/api/yo' , (req,res)=>{
     res.send('YO');
 })
 
-
-app.options('/compile', cors()); // Enable pre-flight request for /compile
+app.options('/compile', cors(corsOptions)); // Enable pre-flight request for /compile

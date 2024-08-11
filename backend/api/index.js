@@ -29,4 +29,8 @@ app.post('/compile', async(req, res) => {
 
 });
 
+app.get('/yo' , (req,res)=>{
+    res.send('YO');
+})
+
 app.options('/compile', cors(corsOptions)); // Enable pre-flight request for /compile

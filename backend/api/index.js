@@ -29,7 +29,7 @@ app.post('/compile', async(req, res) => {
 
 });
 
-app.get('/yo' , (req,res)=>{
+app.get('/api/yo' , (req,res)=>{
     res.send('YO');
 })
 

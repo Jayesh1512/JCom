@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { java } from './compiler.js';
+import { java } from '../compiler.js';
 const app = express();
 
 app.use(cors());
@@ -21,9 +21,5 @@ app.post('/compile', async(req, res) => {
         console.log(output);
         res.status(200).send(output)
     }
-    // else if(req.body.lang === 'cpp'){
-    //     cpp(req.body);
-    // }else if(req.body.lang === 'python'){
-    //     python(req.body);
-    // }
+
 });

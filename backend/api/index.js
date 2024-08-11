@@ -3,9 +3,14 @@ import cors from 'cors';
 import { java } from '../compiler.js';
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+const corsOptions = {
+    origin: "https://compilerpro.vercel.app",
+    methods: ["POST", "GET"],
+    credentials: true
+};
 
+app.use(cors(corsOptions));
+app.use(express.json());
 
 app.listen(8000, (err) => {
     if (!err) {
@@ -23,3 +28,5 @@ app.post('/compile', async(req, res) => {
     }
 
 });
+
+app.options('/compile', cors(corsOptions)); // Enable pre-flight request for /compile

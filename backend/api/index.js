@@ -3,7 +3,9 @@ import cors from 'cors';
 import { java } from '../compiler.js';
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}))
 app.use(express.json());
 
 app.listen(8000, (err) => {

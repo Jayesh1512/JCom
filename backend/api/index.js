@@ -3,13 +3,7 @@ import cors from 'cors';
 import { java } from '../compiler.js';
 const app = express();
 
-const corsOptions = {
-    origin: "https://compilerpro.vercel.app",
-    methods: ["POST", "GET"],
-    credentials: true
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 app.listen(8000, (err) => {
@@ -20,7 +14,7 @@ app.listen(8000, (err) => {
     }
 });
 
-app.post('/compile', async(req, res) => {
+app.post('/api/compile', async(req, res) => {
     if(req.body.lang === 'java'){
         const output = await java(req.body);
         console.log(output);
@@ -29,4 +23,10 @@ app.post('/compile', async(req, res) => {
 
 });
 
-app.options('/compile', cors(corsOptions)); // Enable pre-flight request for /compile
+
+app.get('/yo' , (req,res)=>{
+    res.send('YO');
+})
+
+
+app.options('/compile', cors()); // Enable pre-flight request for /compile

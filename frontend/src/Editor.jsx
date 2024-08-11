@@ -5,7 +5,6 @@ import axios from "axios";
 const IDEditor = (props) => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  axios.defaults.withCredentials = true;
 
   let defaultCode;
   if(props.language == 'java'){
@@ -20,7 +19,7 @@ const IDEditor = (props) => {
 
   const handleRunCode = async () => {
     try {
-      const response = await axios.post("https://jcom.onrender.com/compile", {
+      const response = await axios.post("https://compilerpro-api.vercel.app/api/compiler", {
         code,
         input,
         lang: props.language || "java",
